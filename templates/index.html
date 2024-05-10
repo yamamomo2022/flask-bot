@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>チャットアプリ</title>
+</head>
+<body>
+  <h1>チャット</h1>
+
+  <div id="chat-history">
+    {% if message %}
+      <p>User : {{ message }}</p>
+      <p>Assistant : {{ response }}</p>
+    {% endif %}
+  </div>
+
+  <form action="/chat" method="post">
+    <input type="text" name="message" placeholder="メッセージを入力してください">
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    const chatHistory = document.getElementById('chat-history');
+
+    function addMessage(message, response) {
+      const messageElement = document.createElement('p');
+      messageElement.textContent = message;
+      chatHistory.appendChild(messageElement);
+
+      const responseElement = document.createElement('p');
+      responseElement.textContent = response;
+      responseElement.style.fontStyle = 'italic';
+      chatHistory.appendChild(responseElement);
+    }
+  </script>
+</body>
+</html>
